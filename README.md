@@ -4,13 +4,13 @@
 
 This library is an implementation of [arXiv:2004.06278](https://arxiv.org/abs/2004.06278) adapted for any number of bits.  Keep in mind that the original implementation was designed for 64 bit numbers while this implementation uses a default of 32.
 
-The generation algorithm is **not my work**.  For the paper on which this library is based, please look [here](https://arxiv.org/abs/2004.06278).
+The generation algorithm is **NOT MY WORK**.  For the paper on which this utility is based, please look [here](https://arxiv.org/abs/2004.06278).
 
 ### Usage
 
 The package can be installed and uninstalled with
 ```bash
-pip install git+https://github.com/Oafish1/Squares
+pip install squares-rng
 pip uninstall squares-rng
 ```
 
@@ -19,7 +19,7 @@ After installing, the generator can be used with
 from squares import squares
 
 rng = squares()
-print(next(rng))
+next(rng) # Returns 32-bit uint
 ```
 
 The generator can be seeded
