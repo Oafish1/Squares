@@ -28,12 +28,14 @@ rng = squares(seed=42)
 next(rng) # 4161798144
 ```
 
-If you are struggling to decide on a seed, one can be generated from the computer's internal clock
+If you are struggling to decide on a seed to use for reproducible testing, one can be generated from the computer's internal clock
 ```bash
 from squares import get_suitable_seed
 
 seed = get_suitable_seed()
 ```
+
+This function is used in the case that no seed is provided to the generator.
 
 `get_suitable_seed` has no bit restrictions.  If a seed containing too many bits is passed to the generator, it will be truncated and a warning will be shown.
 
