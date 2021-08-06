@@ -1,0 +1,71 @@
+# Squares: A Counter-Based Random Number Generator
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Oafish1/Squares/Build%20and%20Test?label=tests&style=plastic)
+
+This library is an implementation of [arXiv:2004.06278](https://arxiv.org/abs/2004.06278) adapted for any number of bits.  Keep in mind that the original implementation was designed for 64 bit numbers.
+
+The generation algorithm is **not my work**.  For the paper on which this library is based, please look [here](https://arxiv.org/abs/2004.06278).
+
+### Usage
+
+The package can be installed and uninstalled with
+```bash
+pip install git+https://github.com/Oafish1/Squares
+pip uninstall squares-rng
+```
+
+After installing, the generator can be used with
+```bash
+from squares import squares
+
+rng = squares()
+print(next(rng))
+```
+
+The generator can be seeded
+```bash
+rng = squares(seed=42)
+next(rng) # 4161798144
+```
+
+If you are struggling to decide on a seed, one can be generated from the computer's internal clock
+```bash
+from squares import get_suitable_seed
+
+seed = get_suitable_seed()
+```
+
+`get_suitable_seed` has no bit restrictions.  If a seed containing too many bits is passed to the generator, it will be truncated and a warning will be shown.
+
+For small seeds, the `safety` parameter should be left as `True`
+```bash
+rng = squares(seed=42, safety=False)
+next(rng) # 0
+next(rng) # 115605504
+```
+
+`safety` is a proprietary method to allow for smaller keys, iterating the generator until the seed has a non-zero maximal bit.  Due to the nature of the algorithm, smaller keys would otherwise result in much smaller numbers for the first few iterations.  With `safety=True`, keep in mind that the first generation will take longer than subsequent calls.
+
+The maximal bits of the generated number can also be set
+```bash
+rng = squares(seed=84, bits=64)
+next(rng) # 9267630197371305984
+```
+
+The default is `bits=32` for maximal python compatibility.  Keep in mind that this does not automatically influence the internal calculation, only the generated number.
+
+Lastly, a truncation utility is included
+```bash
+from squares import truncate
+
+truncate(6798039809, 32) # 2503072513
+```
+
+The truncation utility defaults to truncating the higher bits, but can be configured to preserve them instead
+```bash
+truncate(698320, 16, right_shift=True) # 43645
+```
+
+# Original Paper
+
+[Widynski, *arXiv:2004.06278*](https://arxiv.org/abs/2004.06278)
