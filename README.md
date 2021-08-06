@@ -2,7 +2,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Oafish1/Squares/Build%20and%20Test?label=tests&style=plastic)
 
-This library is an implementation of [arXiv:2004.06278](https://arxiv.org/abs/2004.06278) adapted for any number of bits.  Keep in mind that the original implementation was designed for 64 bit numbers.
+This library is an implementation of [arXiv:2004.06278](https://arxiv.org/abs/2004.06278) adapted for any number of bits.  Keep in mind that the original implementation was designed for 64 bit numbers while this implementation uses a default of 32.
 
 The generation algorithm is **not my work**.  For the paper on which this library is based, please look [here](https://arxiv.org/abs/2004.06278).
 
@@ -54,7 +54,7 @@ rng = squares(seed=84, bits=64)
 next(rng) # 9267630197371305984
 ```
 
-The default is `bits=32` for maximal python compatibility.  Keep in mind that this does not automatically influence the internal calculation, only the generated number.
+The default is `bits=32` for maximal python compatibility.  Keep in mind that this does not automatically influence the internal calculation except where necessary.  Some internal calculations may involve more than the specified number of bits if python allows it.  However, the generated integer will not exceed the requested bits.
 
 Lastly, a truncation utility is included
 ```bash
