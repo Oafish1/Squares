@@ -8,7 +8,7 @@ The generation algorithm is **NOT MY WORK**.  For the paper on which this utilit
 
 ### Usage
 
-The package can be installed and uninstalled with
+The package can be installed with
 ```bash
 pip install squares-rng
 ```
