@@ -11,7 +11,6 @@ The generation algorithm is **NOT MY WORK**.  For the paper on which this utilit
 The package can be installed and uninstalled with
 ```bash
 pip install squares-rng
-pip uninstall squares-rng
 ```
 
 After installing, the generator can be used with
